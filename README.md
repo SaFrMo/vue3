@@ -2,6 +2,11 @@
 
 > three.js with a Vue UI
 
+## To-Do
+
+*   add THREE canvas
+*   add main game loop
+
 ## Build Setup
 
 ```bash
