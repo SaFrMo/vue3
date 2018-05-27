@@ -1,3 +1,3 @@
 export default function() {
-    console.log(this.deltaTime)
+    // console.log(this.deltaTime)
 }
