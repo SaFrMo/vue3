@@ -2,6 +2,14 @@
 
 > three.js with a Vue UI
 
+## API
+
+### `Game` class
+
+| Method | Parameters          | Notes |
+| ------ | ------------------- | ----- |
+| `add`  | `{<br>mesh: (etc)}` | ...   |
+
 ## To-Do
 
 *   add THREE canvas

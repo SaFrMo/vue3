@@ -5,6 +5,7 @@ import App from './vue/App'
 import router from './vue/router'
 import Game from './game'
 import store from './store'
+import THREE from 'three'
 
 Vue.config.productionTip = false
 
@@ -15,7 +16,20 @@ new Vue({
     store,
     components: { App },
     template: '<App/>',
+    data() {
+        return {
+            game: null
+        }
+    },
     mounted() {
-        new Game()
+        this.game = new Game()
+
+        // add ship
+        const c = this.game.add({ position: [0, 0, -5] })
+
+        // move camera
+        this.game.camera.position.set(5, 5, 0)
+        // look at ship
+        this.game.camera.lookAt(c.position)
     }
 })
