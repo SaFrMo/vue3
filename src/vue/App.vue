@@ -2,7 +2,7 @@
     <div id="app">
         <canvas id="game-canvas"/>
 
-        <router-view/>
+        <router-view class="ui"/>
     </div>
 </template>
 
@@ -14,18 +14,22 @@ export default {
 
 <style>
 #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
 }
-canvas {
+canvas,
+.ui {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+}
+.ui {
+    color: #fff;
 }
 </style>
