@@ -25,7 +25,7 @@ export default class {
         window.addEventListener('resize', this.resize)
 
         // add scene dictionary
-        this.lookup = {}
+        this.dictionary = {}
 
         // deltaTime variables
         this.lastTick = Date.now()
@@ -90,11 +90,11 @@ export default class {
 
         // set up options for newly created mesh
         if (opts.name) {
-            if (!this.lookup.hasOwnProperty(opts.name)) {
-                this.lookup[opts.name] = toAdd
+            if (!this.dictionary.hasOwnProperty(opts.name)) {
+                this.dictionary[opts.name] = toAdd
             } else {
                 console.warn(
-                    `Lookup table already has an entry for ${
+                    `dictionary table already has an entry for ${
                         opts.name
                     }. Skipping addition.`
                 )
