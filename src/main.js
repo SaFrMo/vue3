@@ -24,12 +24,12 @@ new Vue({
     mounted() {
         this.game = new Game()
 
-        // add ship
-        const c = this.game.add({ position: [0, 0, -5] })
+        // add player
+        const player = this.game.add({ position: [0, 0, -5] })
 
         // move camera
         this.game.camera.position.set(5, 5, 0)
-        // look at ship
-        this.game.camera.lookAt(c.position)
+        // look at player
+        this.game.camera.lookAt(player.position)
     }
 })
