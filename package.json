@@ -10,7 +10,9 @@
         "build": "node build/build.js"
     },
     "dependencies": {
+        "node-sass": "^4.9.0",
         "popmotion": "^8.2.2",
+        "sass-loader": "^7.0.1",
         "three": "^0.92.0",
         "vue": "^2.5.2",
         "vue-router": "^3.0.1",
