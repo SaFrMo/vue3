@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './vue/App'
 import router from './vue/router'
-import Game from './game'
+import Game from './engine'
 import store from './store'
 import THREE from 'three'
 

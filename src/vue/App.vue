@@ -29,7 +29,4 @@ canvas,
     bottom: 0;
     left: 0;
 }
-.ui {
-    color: #fff;
-}
 </style>
