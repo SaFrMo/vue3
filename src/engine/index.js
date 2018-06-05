@@ -1,6 +1,5 @@
 import store from '../store'
 import * as THREE from 'three'
-import update from './update'
 
 export default class {
     constructor() {
@@ -32,7 +31,7 @@ export default class {
         this.lastTick = Date.now()
         this.deltaTime = 0
 
-        this.update()
+        this.masterUpdate()
     }
 
     resize() {
@@ -47,17 +46,22 @@ export default class {
         }
     }
 
-    update() {
+    masterUpdate() {
         // calculate deltaTime
         const now = Date.now()
         this.deltaTime = (now - this.lastTick) / 1000
         this.lastTick = now
 
+        // run update
+        if (this.update) {
+            this.update(this)
+        }
+
         // render
         this.renderer.render(this.scene, this.camera)
 
-        // call & request update
-        requestAnimationFrame(() => this.update())
+        // call & request masterUpdate
+        requestAnimationFrame(() => this.masterUpdate())
     }
 
     // Add an item to the scene. Defaults to a 1x1x1 gray box.
