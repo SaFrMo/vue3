@@ -18,18 +18,37 @@ new Vue({
     template: '<App/>',
     data() {
         return {
-            game: null
+            game: null,
+            player: null
         }
     },
     mounted() {
         this.game = new Game()
 
         // add player
-        const player = this.game.add({ position: [0, 0, -5] })
+        const player = this.game.add({ position: [0, 0, 0] })
 
         // move camera
-        this.game.camera.position.set(5, 5, 0)
+        this.game.camera.position.set(5, 2, 5)
         // look at player
         this.game.camera.lookAt(player.position)
+
+        // create blocks group
+        for (let i = 0; i < 10; i++) {
+            this.game.add({
+                group: 'blocks',
+                position: [i * 2, 0, 0]
+            })
+        }
+
+        // save update
+        this.game.update = game => {
+            this.update(game)
+        }
+    },
+    methods: {
+        update(game) {
+            // console.log(game)
+        }
     }
 })
