@@ -53,6 +53,9 @@ export default class {
 
         // run update
         if (this.update) {
+            // in game instances, you can set update like this:
+            // game.update = game => console.log(this, game)
+            // "this" will be the Vue instance, "game" the Game instance
             this.update(this)
         }
 
