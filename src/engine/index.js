@@ -69,50 +69,72 @@ export default class {
 
     // Add an item to the scene. Defaults to a 1x1x1 gray box.
     // opts:
-    //  - mesh
-    //  - group
-    //  - color
-    //  - position
-    //  - name
+    //  - mesh (optional, THREE mesh)
+    //  - group (option, string: group name)
+    //  - color (optional, hex color)
+    //  - position (optional, array: [x, y, z])
+    //  - name (optional, string)
     add(opts = {}) {
-        let toAdd = opts.mesh || opts.group
+        let toAdd = opts.mesh
         let addMat = opts.material
 
         if (!toAdd) {
             toAdd = new THREE.BoxGeometry(1, 1, 1)
         }
 
-        if (!opts.group && !addMat) {
+        if (!addMat) {
             addMat = new THREE.MeshBasicMaterial({
                 color: opts.color || 0xcccccc
             })
         }
 
-        // TODO: fix and allow groups, etc
-        const created = new THREE.Mesh(toAdd, addMat)
-        this.scene.add(created)
-
-        if (opts.position) {
-            created.position.set(...opts.position)
+        // prep thing to create
+        let created = null
+        if (toAdd && addMat) {
+            created = new THREE.Mesh(toAdd, addMat)
         }
 
-        // set up options for newly created mesh
-        if (opts.name) {
-            if (!this.dictionary.hasOwnProperty(opts.name)) {
-                this.dictionary[opts.name] = toAdd
-            } else {
-                console.warn(
-                    `dictionary table already has an entry for ${
-                        opts.name
-                    }. Skipping addition.`
-                )
+        // prep group
+        let group = this.getDictionary(opts.group)
+
+        // create group if it doesn't exist
+        if (opts.group && !group) {
+            group = new THREE.Group()
+            this.scene.add(group)
+            this.setDictionary(opts.group, group)
+        }
+
+        if (group && created) {
+            group.add(created)
+        } else if (created) {
+            this.scene.add(created)
+        }
+
+        if (opts.position) {
+            if (created) {
+                created.position.set(...opts.position)
             }
         }
 
-        if (created) {
-            return created
+        // set up options for newly created mesh
+        if (opts.name && (created || group)) {
+            this.setDictionary(opts.name, created || group)
         }
 
-        return null
+        return created || group || null
+    }
+
+    setDictionary(key, val) {
+        if (!this.dictionary.hasOwnProperty(key)) {
+            this.dictionary[key] = val
+        } else {
+            console.warn(
+                `dictionary table already has an entry for ${key}. Skipping addition.`
+            )
+        }
+    }
+
+    getDictionary(key) {
+        return this.dictionary[key] || null
     }
 }
