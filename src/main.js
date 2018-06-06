@@ -10,6 +10,7 @@ import * as THREE from 'three'
 // split methods
 import update from './game/update'
 import generateBlocks from './game/generateBlocks'
+import tweenFlourish from './game/tweenFlourish'
 
 Vue.config.productionTip = false
 
@@ -37,6 +38,8 @@ new Vue({
             position: [0, 0, 0],
             color: this.colors[0]
         })
+
+        tweenFlourish.call(this)
 
         // move camera
         this.game.camera.position.set(5, 2, 5)
