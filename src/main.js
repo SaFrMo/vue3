@@ -7,9 +7,10 @@ import Game from './engine'
 import store from './store'
 import * as THREE from 'three'
 
-Vue.config.productionTip = false
+// split methods
+import update from './game/update'
 
-const blockDistance = 2
+Vue.config.productionTip = false
 
 // add UI
 new Vue({
@@ -45,7 +46,12 @@ new Vue({
         for (let i = 0; i < 10; i++) {
             this.game.add({
                 group: 'blocks',
-                position: [i * blockDistance + blockDistance, -1, 0],
+                position: [
+                    i * this.$store.state.BLOCK_DISTANCE +
+                        this.$store.state.BLOCK_DISTANCE,
+                    -1,
+                    0
+                ],
                 color: this.colors[
                     Math.floor(Math.random() * this.colors.length)
                 ]
@@ -66,33 +72,7 @@ new Vue({
     },
     methods: {
         update(game) {
-            const oldX = Math.abs(this.blocks.position.x)
-
-            // move blocks
-            this.blocks.position.x -=
-                1 * game.deltaTime * this.$store.state.playerSpeed
-
-            const newX = Math.abs(this.blocks.position.x)
-
-            // if we've reached a new block...
-            if (Math.floor(oldX) % 2 == 1 && Math.floor(newX) % 2 == 0) {
-                const blockIndex = Math.floor(newX) / blockDistance - 1
-                const blockTouched = this.game.getDictionary('blocks').children[
-                    blockIndex
-                ]
-                // ...check the player's color
-                const colorA = this.player.material.color
-                const colorB = blockTouched.material.color
-
-                if (
-                    colorA.r == colorB.r &&
-                    colorA.g == colorB.g &&
-                    colorA.b == colorB.b
-                ) {
-                    // TODO: Award points and speed up
-                    console.log('match!')
-                }
-            }
+            update.call(this, game)
         },
         onClick(evt) {
             // if we're a keyboard event, make sure it was the space key
