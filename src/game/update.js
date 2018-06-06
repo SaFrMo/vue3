@@ -1,3 +1,5 @@
+import tweenJump from './tweenJump'
+
 // context: Vue instance in main.js
 export default function(game) {
     const oldX = Math.abs(this.blocks.position.x)
@@ -27,5 +29,7 @@ export default function(game) {
         } else {
             this.$store.commit('SET_SCORE', 0)
         }
+
+        tweenJump.call(this)
     }
 }
