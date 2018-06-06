@@ -1,4 +1,5 @@
 import tweenJump from './tweenJump'
+import generateBlocks from './generateBlocks'
 
 // context: Vue instance in main.js
 export default function(game) {
@@ -20,6 +21,7 @@ export default function(game) {
         const colorA = this.player.material.color
         const colorB = blockTouched.material.color
 
+        // award points or reset counter
         if (
             colorA.r == colorB.r &&
             colorA.g == colorB.g &&
@@ -30,6 +32,13 @@ export default function(game) {
             this.$store.commit('SET_SCORE', 0)
         }
 
+        // start jumping to the next block
         tweenJump.call(this)
+
+        // if we have less than five blocks till the end of the line,
+        // generate more
+        if (this.blocks.children.length - blockIndex <= 5) {
+            generateBlocks.call(this, 5)
+        }
     }
 }

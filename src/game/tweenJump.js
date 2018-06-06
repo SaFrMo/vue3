@@ -4,7 +4,7 @@ export default function() {
     const totalDuration = 1000 / this.$store.state.playerSpeed
 
     tween({
-        to: 3,
+        to: 2,
         duration: totalDuration,
         yoyo: 1
     }).start(val => {

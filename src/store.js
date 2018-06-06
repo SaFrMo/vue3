@@ -12,7 +12,7 @@ export default new Vuex.Store({
         playerSpeed: 0,
 
         // gameplay constants
-        SPEED_CHANGE_ON_CORRECT: 0.5,
+        SPEED_CHANGE_ON_CORRECT: 0.1,
         BLOCK_DISTANCE: 2
     },
     mutations: {
@@ -29,7 +29,7 @@ export default new Vuex.Store({
         SET_SCORE: (state, payload) => {
             state.score = payload
             if (payload == 0) {
-                state.playerSpeed = 1
+                state.playerSpeed = 2
             }
         }
     },

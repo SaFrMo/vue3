@@ -9,6 +9,7 @@ import * as THREE from 'three'
 
 // split methods
 import update from './game/update'
+import generateBlocks from './game/generateBlocks'
 
 Vue.config.productionTip = false
 
@@ -43,20 +44,7 @@ new Vue({
         this.game.camera.lookAt(this.player.position)
 
         // create blocks group
-        for (let i = 0; i < 10; i++) {
-            this.game.add({
-                group: 'blocks',
-                position: [
-                    i * this.$store.state.BLOCK_DISTANCE +
-                        this.$store.state.BLOCK_DISTANCE,
-                    -1,
-                    0
-                ],
-                color: this.colors[
-                    Math.floor(Math.random() * this.colors.length)
-                ]
-            })
-        }
+        generateBlocks.call(this, 10)
 
         // save blocks group
         this.blocks = this.game.getDictionary('blocks')
