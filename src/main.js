@@ -26,7 +26,7 @@ new Vue({
             game: null,
             player: null,
             blocks: null,
-            colors: ['red', 'blue', 'green'],
+            colors: ['red', 'green', 'blue'],
             playerColorIndex: 0
         }
     },
