@@ -1,6 +1,8 @@
 <template>
 
     <main class="ui">
+        <streak-announcer/>
+        
         <div class="score">
             <span>Score: {{ $store.state.score }}</span>
 
@@ -34,6 +36,16 @@
     </main>
 
 </template>
+
+<script>
+import StreakAnnouncer from './StreakAnnouncer.vue'
+
+export default {
+    components: {
+        'streak-announcer': StreakAnnouncer
+    }
+}
+</script>
 
 <style lang="scss">
 // UI styling

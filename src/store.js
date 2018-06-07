@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         score: 0,
         showTutorial: false,
+        highScore: 0,
 
         // gameplay vars
         playerSpeed: 0,
@@ -31,6 +32,9 @@ export default new Vuex.Store({
             if (payload == 0) {
                 state.playerSpeed = 2
             }
+        },
+        SET_NEW_HIGH_SCORE: (state, payload) => {
+            state.highScore = payload
         }
     },
     actions: {},
