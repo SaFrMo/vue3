@@ -39,14 +39,14 @@ export default class {
     }
 
     resize() {
-        // set size
-        if (this.renderer) {
-            this.renderer.setSize(window.innerWidth, window.innerHeight)
-        }
-
         // set aspect
         if (this.camera) {
             this.camera.aspect = window.innerWidth / window.innerHeight
+            this.camera.updateProjectionMatrix()
+        }
+        // set size
+        if (this.renderer) {
+            this.renderer.setSize(window.innerWidth, window.innerHeight)
         }
     }
 
