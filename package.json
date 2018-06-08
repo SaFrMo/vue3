@@ -12,6 +12,7 @@
     "dependencies": {
         "popmotion": "^8.2.2",
         "three": "^0.92.0",
+        "three-obj-loader": "^1.1.3",
         "vue": "^2.5.2",
         "vue-router": "^3.0.1",
         "vuex": "^3.0.1"

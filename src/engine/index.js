@@ -16,7 +16,8 @@ export default class {
 
         // attach renderer to existing canvas
         this.renderer = new THREE.WebGLRenderer({
-            canvas: document.getElementById('game-canvas')
+            canvas: document.getElementById('game-canvas'),
+            antialias: true
         })
         this.renderer.setSize(window.innerWidth, window.innerHeight)
 
