@@ -7,6 +7,9 @@ import Vue3Game from './engine'
 import store from './store'
 import THREE from 'three'
 
+// game functions
+import start from './game/start'
+
 Vue.config.productionTip = false
 
 // add UI
@@ -24,6 +27,6 @@ new Vue({
     mounted() {
         this.game = new Vue3Game()
 
-        // Custom code here!
+        start.call(this)
     }
 })
