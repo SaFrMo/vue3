@@ -1,5 +1,6 @@
 import store from '../store'
 import * as THREE from 'three'
+import objLoader from './objLoader'
 
 export default class {
     constructor() {
@@ -29,6 +30,10 @@ export default class {
         // deltaTime variables
         this.lastTick = Date.now()
         this.deltaTime = 0
+
+        // async OBJ loader
+        // accepts two arguments, URL and onProgress event
+        this.loadObj = objLoader
 
         this.masterUpdate()
     }
