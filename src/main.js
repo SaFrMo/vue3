@@ -9,6 +9,7 @@ import THREE from 'three'
 
 // game functions
 import start from './game/start'
+import update from './game/update'
 
 Vue.config.productionTip = false
 
@@ -28,5 +29,6 @@ new Vue({
         this.game = new Vue3Game()
 
         start.call(this)
+        this.game.update = () => update.call(this)
     }
 })
