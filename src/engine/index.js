@@ -28,9 +28,10 @@ export default class {
         // add scene dictionary
         this.dictionary = {}
 
-        // deltaTime variables
+        // time variables
         this.lastTick = Date.now()
         this.deltaTime = 0
+        this.elapsedTime = 0
 
         // async OBJ loader
         // accepts two arguments, URL and onProgress event
@@ -55,6 +56,7 @@ export default class {
         // calculate deltaTime
         const now = Date.now()
         this.deltaTime = (now - this.lastTick) / 1000
+        this.elapsedTime += this.deltaTime
         this.lastTick = now
 
         // run update
