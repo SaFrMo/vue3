@@ -21,7 +21,7 @@ export default class {
         this.renderer.setSize(window.innerWidth, window.innerHeight)
 
         // add resize listener
-        window.addEventListener('resize', this.resize)
+        window.addEventListener('resize', () => this.resize())
 
         // add scene dictionary
         this.dictionary = {}
