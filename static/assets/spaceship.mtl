@@ -1,0 +1,47 @@
+# Blender MTL File: 'spaceship.blend'
+# Material Count: 4
+
+newmtl exhaust_burn.002
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.563269 0.800000 0.759578
+Ks 0.500000 0.500000 0.500000
+Ke 0.704087 1.000000 0.949472
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl hull.002
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.191584 0.160656 0.195202
+Ks 0.100000 0.100000 0.100000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump /Users/funkhaus/Library/Application Support/Blender/2.79/scripts/addons/add_mesh_SpaceshipGenerator/textures/hull_normal.png
+
+newmtl hull_dark.002
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.057475 0.048197 0.058561
+Ks 0.100000 0.100000 0.100000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump /Users/funkhaus/Library/Application Support/Blender/2.79/scripts/addons/add_mesh_SpaceshipGenerator/textures/hull_normal.png
+
+newmtl hull_lights.002
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.191584 0.160656 0.195202
+Ks 0.100000 0.100000 0.100000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Bump /Users/funkhaus/Library/Application Support/Blender/2.79/scripts/addons/add_mesh_SpaceshipGenerator/textures/hull_normal.png
+map_Kd /Users/funkhaus/Library/Application Support/Blender/2.79/scripts/addons/add_mesh_SpaceshipGenerator/textures/hull_lights_diffuse.png
+map_Ke /Users/funkhaus/Library/Application Support/Blender/2.79/scripts/addons/add_mesh_SpaceshipGenerator/textures/hull_lights_emit.png
