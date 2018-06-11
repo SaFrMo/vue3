@@ -11,6 +11,10 @@ import THREE from 'three'
 import start from './game/start'
 import update from './game/update'
 
+// directives
+import track from './vue/directives/track'
+Vue.directive('track', track)
+
 Vue.config.productionTip = false
 
 // add UI
