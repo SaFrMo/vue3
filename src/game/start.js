@@ -6,18 +6,20 @@ export default async function() {
     sun.position.set(1, 0.5, 1)
     this.game.scene.add(sun)
 
+    this.game.camera.position.set(5, 5, 10)
+    this.game.camera.lookAt(new THREE.Vector3(0, 0, 0))
+
+    this.game.forceRender()
+
     // add spaceship
     const ship = await this.game.loadObj('static/assets/ship1.obj')
     this.game.scene.add(ship)
     this.game.save('ship', ship)
-    this.game.camera.position.set(5, 5, 10)
-    this.game.camera.lookAt(new THREE.Vector3(0, 0, 0))
 
     // add pivot point to center
     const center = new THREE.Object3D()
     center.add(this.game.camera)
     this.game.scene.add(center)
-
     this.game.save('center', center)
 
     // key listeners

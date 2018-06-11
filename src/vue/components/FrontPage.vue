@@ -12,10 +12,8 @@ import Vue from 'vue'
 export default {
     watch: {
         '$root.booted'() {
-            setTimeout(() => {
-                let pos = this.$root.game.utils.getScreenPositionFromWorldPosition()
-                console.log(pos)
-            }, 200)
+            let pos = this.$root.game.utils.getScreenPositionFromWorldPosition()
+            console.log(pos)
         }
     }
 }
