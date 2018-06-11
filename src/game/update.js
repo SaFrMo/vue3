@@ -7,7 +7,7 @@ const p = {
 }
 
 export default function() {
-    Object.keys(p).map(x => (p[x] = this.game.getDictionary(x)))
+    Object.keys(p).map(x => (p[x] = this.game.load(x)))
 
     if (Object.keys(p).some(x => p[x] == null)) {
         return

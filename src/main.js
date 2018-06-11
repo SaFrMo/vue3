@@ -22,7 +22,8 @@ new Vue({
     template: '<App/>',
     data() {
         return {
-            game: null
+            game: null,
+            booted: false
         }
     },
     mounted() {
@@ -30,5 +31,6 @@ new Vue({
 
         start.call(this)
         this.game.update = () => update.call(this)
+        this.booted = true
     }
 })
