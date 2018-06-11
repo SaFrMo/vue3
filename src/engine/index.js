@@ -1,9 +1,13 @@
 import store from '../store'
 import * as THREE from 'three'
 import objLoader from './objLoader'
+import utils from './utils'
 
 export default class {
     constructor() {
+        // save global object
+        window.game = this
+
         // create main scene
         this.scene = new THREE.Scene()
 
@@ -17,7 +21,8 @@ export default class {
 
         // attach renderer to existing canvas
         this.renderer = new THREE.WebGLRenderer({
-            canvas: document.getElementById('game-canvas')
+            canvas: document.getElementById('game-canvas'),
+            antialias: true
         })
         this.renderer.setSize(window.innerWidth, window.innerHeight)
 
@@ -36,6 +41,10 @@ export default class {
         // accepts two arguments, URL and onProgress event
         this.loadObj = objLoader
 
+        // save utils
+        this.utils = utils
+
+        // kick update loop
         this.masterUpdate()
     }
 
@@ -73,74 +82,17 @@ export default class {
         requestAnimationFrame(() => this.masterUpdate())
     }
 
-    // Add an item to the scene. Defaults to a 1x1x1 gray box.
-    // opts:
-    //  - mesh (optional, THREE mesh)
-    //  - group (option, string: group name)
-    //  - color (optional, hex color)
-    //  - position (optional, array: [x, y, z])
-    //  - name (optional, string)
-    add(opts = {}) {
-        let toAdd = opts.mesh
-        let addMat = opts.material
-
-        if (!toAdd) {
-            toAdd = new THREE.BoxGeometry(1, 1, 1)
-        }
-
-        if (!addMat) {
-            addMat = new THREE.MeshBasicMaterial({
-                color: opts.color || 0xcccccc
-            })
-        }
-
-        // prep thing to create
-        let created = null
-        if (toAdd && addMat) {
-            created = new THREE.Mesh(toAdd, addMat)
-        }
-
-        // prep group
-        let group = this.getDictionary(opts.group)
-
-        // create group if it doesn't exist
-        if (opts.group && !group) {
-            group = new THREE.Group()
-            this.scene.add(group)
-            this.setDictionary(opts.group, group)
-        }
-
-        if (group && created) {
-            group.add(created)
-        } else if (created) {
-            this.scene.add(created)
-        }
-
-        if (opts.position) {
-            if (created) {
-                created.position.set(...opts.position)
-            }
-        }
-
-        // set up options for newly created mesh
-        if (opts.name && (created || group)) {
-            this.setDictionary(opts.name, created || group)
-        }
-
-        return created || group || null
-    }
-
-    setDictionary(key, val) {
-        if (!this.dictionary.hasOwnProperty(key)) {
+    save(key, val, force = false) {
+        if (!this.dictionary.hasOwnProperty(key) || force) {
             this.dictionary[key] = val
         } else {
             console.warn(
-                `dictionary table already has an entry for ${key}. Skipping addition.`
+                `dictionary table already has an entry for ${key}. Skipping addition. (Set third parameter to "true" to force overwrite.)`
             )
         }
     }
 
-    getDictionary(key) {
+    load(key) {
         return this.dictionary[key] || null
     }
 }

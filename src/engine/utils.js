@@ -1,0 +1,23 @@
+import * as THREE from 'three'
+
+export default {
+    getScreenPositionFromWorldPosition(
+        screenPos = new THREE.Vector3(0, 0, 0),
+        game = null
+    ) {
+        if (game == null) {
+            game = window.game
+        }
+
+        const pos = screenPos.project(game.camera)
+        const size = game.renderer.getSize()
+        const widthHalf = size.width / 2
+        const heightHalf = size.height / 2
+
+        pos.x = pos.x * widthHalf + widthHalf
+        pos.y = -(pos.y * heightHalf) + heightHalf
+        pos.z = 0
+
+        return pos
+    }
+}
