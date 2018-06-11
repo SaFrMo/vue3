@@ -99,4 +99,19 @@ export default class {
     load(key) {
         return this.dictionary[key] || null
     }
+
+    async nextFrame() {
+        return new Promise(res => requestAnimationFrame(res))
+    }
+
+    async waitFor(key) {
+        let result = this.load(key)
+
+        while (result == null) {
+            await this.nextFrame()
+            result = this.load(key)
+        }
+
+        return result
+    }
 }
