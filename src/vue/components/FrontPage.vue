@@ -1,19 +1,25 @@
 <template>
 
     <main class="front-page">
-        <h1>vue3</h1>
+        <h1 :style="trackedPosition">vue3</h1>
     </main>
 
 </template>
 
 <script>
 import Vue from 'vue'
+import track from '../mixins/track.js'
 
 export default {
+    mixins: [track],
+    data() {
+        return {
+            track: 'ship'
+        }
+    },
     watch: {
         '$root.booted'() {
             let pos = this.$root.game.utils.getScreenPositionFromWorldPosition()
-            console.log(pos)
         }
     }
 }
@@ -33,6 +39,7 @@ main.front-page {
         display: inline-block;
         padding: 20px;
         border-radius: 15px;
+        transform: translate(-50%, -50%);
     }
 }
 </style>
