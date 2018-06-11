@@ -108,7 +108,7 @@ export default class {
         if (opts.group && !group) {
             group = new THREE.Group()
             this.scene.add(group)
-            this.setDictionary(opts.group, group)
+            this.save(opts.group, group)
         }
 
         if (group && created) {
@@ -125,13 +125,13 @@ export default class {
 
         // set up options for newly created mesh
         if (opts.name && (created || group)) {
-            this.setDictionary(opts.name, created || group)
+            this.save(opts.name, created || group)
         }
 
         return created || group || null
     }
 
-    setDictionary(key, val) {
+    save(key, val) {
         if (!this.dictionary.hasOwnProperty(key)) {
             this.dictionary[key] = val
         } else {

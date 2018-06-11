@@ -21,9 +21,14 @@ export default new Vuex.Store({
         },
         CHANGE_INPUT_HORIZONTAL: (state, payload) => {
             state.inputHorizontal += payload
+            state.inputHorizontal = Math.max(
+                Math.min(state.inputHorizontal, 1),
+                -1
+            )
         },
         CHANGE_INPUT_VERTICAL: (state, payload) => {
             state.inputVertical += payload
+            state.inputVertical = Math.max(Math.min(state.inputVertical, 1), -1)
         }
     },
     actions: {},
