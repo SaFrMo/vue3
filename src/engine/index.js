@@ -82,6 +82,10 @@ export default class {
         requestAnimationFrame(() => this.masterUpdate())
     }
 
+    forceRender() {
+        this.renderer.render(this.scene, this.camera)
+    }
+
     save(key, val, force = false) {
         if (!this.dictionary.hasOwnProperty(key) || force) {
             this.dictionary[key] = val
