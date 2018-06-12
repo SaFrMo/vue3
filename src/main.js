@@ -10,6 +10,7 @@ import THREE from 'three'
 // game functions
 import start from './game/start'
 import update from './game/update'
+import setupLevel from './game/setupLevel'
 
 // directives
 import track from './vue/directives/track'
@@ -36,5 +37,8 @@ new Vue({
         start.call(this)
         this.game.update = () => update.call(this)
         this.booted = true
+    },
+    methods: {
+        setupLevel
     }
 })

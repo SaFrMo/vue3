@@ -1,9 +1,7 @@
 <template>
 
     <main class="front-page">
-        <h1 v-track="'ship'">vue3</h1>
 
-        <h2 v-track="'front'">the front</h2>
     </main>
 
 </template>

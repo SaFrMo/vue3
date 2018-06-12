@@ -1,0 +1,11 @@
+{
+    "assets": {
+        "model": "static/assets/ship1.obj",
+        "material": "static/assets/spaceship.mtl"
+    },
+    "meta": {
+        "name": "Houndstooth",
+        "model": "AT-3400 Solar Hauler",
+        "owner": "Adelia Reyes"
+    }
+}
