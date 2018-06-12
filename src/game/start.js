@@ -1,12 +1,6 @@
 import * as THREE from 'three'
 import controls from './controls'
 
-function createBox(side = 1) {
-    const geometry = new THREE.BoxBufferGeometry(side, side, side)
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-    return new THREE.Mesh(geometry, material)
-}
-
 export default async function() {
     // add sun
     const sun = new THREE.DirectionalLight(0xffffff, 1)

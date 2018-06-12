@@ -1,12 +1,23 @@
-export default async function() {
+import * as THREE from 'three'
+
+function createBox(side = 1) {
+    const geometry = new THREE.BoxBufferGeometry(side, side, side)
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+    return new THREE.Mesh(geometry, material)
+}
+
+export default async function({ model, pois }) {
     // add spaceship
-    const ship = await this.game.loadObj('static/assets/ship1.obj')
+    const ship = await this.game.loadObj(model)
     this.game.scene.add(ship)
-    this.game.save('ship', ship)
+    this.game.save('ship', ship, true)
 
     // add points of interest
-    const front = createBox(2)
-    front.position.set(5, 0, 0)
-    ship.add(front)
-    this.game.save('front', front)
+    let i = 0
+    pois.map(poi => {
+        const created = createBox(2)
+        created.position.set(...poi.position)
+        ship.add(created)
+        this.game.save(`poi${i++}`, created)
+    })
 }

@@ -3,9 +3,18 @@
         "model": "static/assets/ship1.obj",
         "material": "static/assets/spaceship.mtl"
     },
+    "slug": "houndstooth",
     "meta": {
         "name": "Houndstooth",
         "model": "AT-3400 Solar Hauler",
-        "owner": "Adelia Reyes"
+        "owner": "Adelia Reyes",
+        "description":
+            "The design is three generations out of date and the vessel is worn down beyond recognition. Reyes says she's looking to purge some unpleasant memories and pull some scrap in the process."
+    },
+    "game": {
+        "pois": [
+            { "name": "Life support", "position": [3, 0, 0] },
+            { "name": "Engine", "position": [-2, 1, 0] }
+        ]
     }
 }
