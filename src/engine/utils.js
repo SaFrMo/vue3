@@ -9,7 +9,8 @@ export default {
             game = window.game
         }
 
-        const pos = screenPos.project(game.camera)
+        const newPos = new THREE.Vector3(screenPos.x, screenPos.y, screenPos.z)
+        const pos = newPos.project(game.camera)
         const size = game.renderer.getSize()
         const widthHalf = size.width / 2
         const heightHalf = size.height / 2
