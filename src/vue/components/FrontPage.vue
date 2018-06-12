@@ -10,7 +10,6 @@
 
 <script>
 import Vue from 'vue'
-import track from '../mixins/track.js'
 
 export default {}
 </script>
