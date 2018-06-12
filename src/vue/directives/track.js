@@ -12,7 +12,7 @@ function updatePosition(el, binding, vnode) {
     }
     if (tracked) {
         let pos = root.game.utils.getScreenPositionFromWorldPosition(
-            tracked.position
+            tracked.getWorldPosition()
         )
         left = pos.x
         top = pos.y
