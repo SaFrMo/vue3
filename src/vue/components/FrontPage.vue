@@ -23,6 +23,7 @@ main.front-page {
     bottom: 0;
     left: 0;
     color: white;
+    overflow: hidden;
 
     & > * {
         background-color: rgba(#666, 0.4);
