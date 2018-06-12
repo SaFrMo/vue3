@@ -15,6 +15,8 @@ import setupLevel from './game/setupLevel'
 // directives
 import track from './vue/directives/track'
 Vue.directive('track', track)
+import keydown from 'fh-components/v-keydown'
+Vue.directive('keydown', keydown)
 
 Vue.config.productionTip = false
 

@@ -10,7 +10,10 @@ export default new Vuex.Store({
         inputVertical: 0,
 
         // gameplay vars
-        cameraSpeed: 1
+        cameraSpeed: 1,
+
+        // UI vars
+        planOpened: false
     },
     mutations: {
         SET_INPUT_HORIZONTAL: (state, payload) => {
@@ -29,6 +32,9 @@ export default new Vuex.Store({
         CHANGE_INPUT_VERTICAL: (state, payload) => {
             state.inputVertical += payload
             state.inputVertical = Math.max(Math.min(state.inputVertical, 1), -1)
+        },
+        TOGGLE_PLANS: state => {
+            state.planOpened = !state.planOpened
         }
     },
     actions: {},
