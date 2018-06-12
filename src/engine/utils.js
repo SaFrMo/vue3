@@ -20,5 +20,9 @@ export default {
         pos.z = 0
 
         return pos
+    },
+
+    moveToward(obj, targetPos, delta) {
+        obj.translateOnAxis(obj.worldToLocal(targetPos), delta)
     }
 }
