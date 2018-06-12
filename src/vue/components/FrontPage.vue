@@ -2,6 +2,8 @@
 
     <main class="front-page">
         <h1 v-track="'ship'">vue3</h1>
+
+        <h2 v-track="'front'">the front</h2>
     </main>
 
 </template>
@@ -22,7 +24,7 @@ main.front-page {
     left: 0;
     color: white;
 
-    h1 {
+    & > * {
         background-color: rgba(#666, 0.4);
         display: inline-block;
         padding: 20px;

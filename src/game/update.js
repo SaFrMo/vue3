@@ -14,7 +14,7 @@ export default function() {
     }
 
     // bob ship
-    p.ship.position.set(0, Math.sin(this.game.elapsedTime) * 0.1, 0)
+    // p.ship.position.set(0, Math.sin(this.game.elapsedTime) * 0.1, 0)
 
     // move camera
     if (this.$store.state.inputHorizontal) {

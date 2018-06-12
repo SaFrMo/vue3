@@ -1,5 +1,11 @@
 import * as THREE from 'three'
 
+function createBox(side = 1) {
+    const geometry = new THREE.BoxBufferGeometry(side, side, side)
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+    return new THREE.Mesh(geometry, material)
+}
+
 export default async function() {
     // add sun
     const sun = new THREE.DirectionalLight(0xffffff, 1)
@@ -15,6 +21,12 @@ export default async function() {
     const ship = await this.game.loadObj('static/assets/ship1.obj')
     this.game.scene.add(ship)
     this.game.save('ship', ship)
+
+    // add points of interest
+    const front = createBox(2)
+    front.position.set(5, 0, 0)
+    ship.add(front)
+    this.game.save('front', front)
 
     // add pivot point to center
     const center = new THREE.Object3D()
