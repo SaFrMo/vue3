@@ -9,9 +9,7 @@
 </template>
 
 <style lang="scss">
-$border: 20px;
-$off-white: #faecc2;
-$print-black: #333;
+@import 'src/vue/styles/vars';
 
 .ship-plans {
     color: white;
