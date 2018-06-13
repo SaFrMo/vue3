@@ -13,9 +13,21 @@
     },
     "game": {
         "pois": [
-            { "name": "Engine", "id": 0, "position": [-2, 1, 0] },
-            { "name": "Bridge", "id": 1, "position": [0, 0, 0] },
-            { "name": "Life support", "id": 2, "position": [3, 0, 0] }
+            {
+                "name": "Engine",
+                "id": 0,
+                "position": [-2, 1, 0],
+                "risk": 40,
+                "foundation": [{ "id": 2, "risk": 30 }]
+            },
+            { "name": "Bridge", "id": 1, "position": [0, 0, 0], "risk": 10 },
+            {
+                "name": "Life support",
+                "id": 2,
+                "position": [3, 0, 0],
+                "risk": 20,
+                "foundation": [{ "id": 1, "risk": 30 }]
+            }
         ]
     }
 }

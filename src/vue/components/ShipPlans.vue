@@ -9,10 +9,24 @@
         <ul class="design-wrap">
             <li
                 v-for="(poi, i) in pois"
+                v-if="!$store.state.planningBoard.sequence.includes(poi.id)"
                 :key="poi.id"
                 class="poi">
 
-                <h2>{{ poi.name }}</h2>
+                <h2 class="name">{{ poi.name }}</h2>
+
+                <div class="chart">
+                    <div class="row">
+                        <h3>⚠️ Base danger</h3>
+                        <span>{{ poi.risk }}</span>
+                    </div>
+                    <div
+                        class="row"
+                        v-for="(f, i) in poi.foundation">
+                        <h3>🛑 {{ getName(f.id) }}</h3>
+                        <span>+{{ f.risk }}</span>
+                    </div>
+                </div>
 
                 <button
                     :aria-label="`Mark ${ poi.name } for demolition.`"
@@ -31,6 +45,16 @@
                 <p>Build out your demo plan here!</p>
                 <p>Decide which section has the least risk and mark it for demolition. </p>
                 <p>Continue through the blueprint until the entire ship is accounted for.</p>
+            </li>
+
+            <li
+                v-for="(step, i) in $store.state.planningBoard.sequence"
+                :key="i">
+
+                <span>{{ getName(step) }}</span>
+
+                <button @click="$store.commit('SLICE_SEQUENCE_AT', i)">Remove</button>
+
             </li>
 
         </ul>
@@ -57,6 +81,15 @@ export default {
     computed: {
         pois() {
             return _get(this.levelData, 'game.pois', [])
+        }
+    },
+    methods: {
+        getName(id) {
+            const result = this.pois.find(x => x.id == id)
+            if (result) {
+                return result.name
+            }
+            return ''
         }
     }
 }
@@ -89,8 +122,30 @@ export default {
             border: 2px solid $print-black;
             box-sizing: border-box;
             margin: 5px;
-            padding: 5px;
+            padding: 15px 10px;
             flex: 1;
+
+            .name {
+                margin-top: 0;
+            }
+        }
+        .chart {
+            margin-bottom: 20px;
+
+            .row {
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+
+                h3 {
+                    margin: 0;
+                    font-weight: 400;
+                }
+                span {
+                    font-size: 24px;
+                    font-weight: 700;
+                }
+            }
         }
     }
 }
