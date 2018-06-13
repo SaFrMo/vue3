@@ -9,9 +9,8 @@
         <ul class="design-wrap">
             <li
                 v-for="(poi, i) in pois"
-                v-if="!$store.state.planningBoard.sequence.includes(poi.id)"
                 :key="poi.id"
-                class="poi">
+                :class="['poi', { strike: $store.state.planningBoard.sequence.includes(poi.id) }]">
 
                 <h2 class="name">{{ poi.name }}</h2>
 
@@ -21,7 +20,7 @@
                         <span>{{ poi.risk }}</span>
                     </div>
                     <div
-                        class="row"
+                        :class="['row', { strike: $store.state.planningBoard.sequence.includes(f.id) }]"
                         v-for="(f, i) in poi.foundation">
                         <h3>🛑 {{ getName(f.id) }}</h3>
                         <span>+{{ f.risk }}</span>
@@ -30,7 +29,8 @@
 
                 <button
                     :aria-label="`Mark ${ poi.name } for demolition.`"
-                    @click="$store.commit('ADD_SECTION_TO_SEQUENCE', poi.id)">
+                    @click="$store.commit('ADD_SECTION_TO_SEQUENCE', poi.id)"
+                    v-if="!$store.state.planningBoard.sequence.includes(poi.id)">
                     Add to Sequence
                 </button>
 
@@ -51,7 +51,7 @@
                 v-for="(step, i) in $store.state.planningBoard.sequence"
                 :key="i">
 
-                <span>{{ getName(step) }}</span>
+                <p>{{ getName(step) }}</p>
 
                 <button @click="$store.commit('SLICE_SEQUENCE_AT', i)">Remove</button>
 
@@ -124,9 +124,14 @@ export default {
             margin: 5px;
             padding: 15px 10px;
             flex: 1;
+            position: relative;
 
             .name {
                 margin-top: 0;
+            }
+            .overlay {
+                @include fill;
+                background-color: rgba($off-white, 0.8);
             }
         }
         .chart {
@@ -146,6 +151,14 @@ export default {
                     font-weight: 700;
                 }
             }
+        }
+    }
+
+    .strike {
+        opacity: 0.2;
+
+        .strike {
+            opacity: 1;
         }
     }
 }
