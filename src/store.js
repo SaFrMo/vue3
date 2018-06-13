@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import planningBoard from '@/vuex-modules/planningBoard'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+    modules: {
+        planningBoard
+    },
     state: {
         // inputs
         inputHorizontal: 0,

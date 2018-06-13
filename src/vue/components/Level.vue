@@ -1,7 +1,7 @@
 <template>
 
     <main class="level" v-keydown.esc="evt => $store.commit('TOGGLE_PLANS')">
-        <section class="labels">
+        <section class="labels" v-if="levelData && levelData.meta">
             <h1 v-track="'ship'">{{ levelData.meta.name }}</h1>
 
             <h2
@@ -10,7 +10,7 @@
                 v-html="poi.name"/>
         </section>
 
-        <ship-plans v-if="$store.state.planOpened"/>
+        <ship-plans v-if="$store.state.planOpened" :level-data="levelData"/>
     </main>
 
 </template>

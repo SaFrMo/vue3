@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "fh-components": "^1.2.67",
+        "lodash": "^4.17.10",
         "node-sass": "^4.9.0",
         "popmotion": "^8.2.2",
         "sass-loader": "^7.0.3",
