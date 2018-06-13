@@ -17,7 +17,7 @@ export default new Vuex.Store({
         cameraSpeed: 1,
 
         // UI vars
-        planOpened: false
+        planOpened: true
     },
     mutations: {
         SET_INPUT_HORIZONTAL: (state, payload) => {

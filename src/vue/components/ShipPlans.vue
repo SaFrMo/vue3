@@ -2,64 +2,76 @@
 
     <section class="ship-plans">
 
-        <h1 class="title">Planning Board</h1>
+        <div class="top-wrap">
 
-        <!-- Blueprint section -->
-        <h2>Blueprint</h2>
-        <ul class="design-wrap">
-            <li
-                v-for="(poi, i) in pois"
-                :key="poi.id"
-                :class="['poi', { strike: $store.state.planningBoard.sequence.includes(poi.id) }]">
+            <h1 class="title">Planning Board</h1>
 
-                <h2 class="name">{{ poi.name }}</h2>
+            <!-- Blueprint section -->
+            <h2>Blueprint</h2>
+            <ul class="design-wrap">
+                <li
+                    v-for="(poi, i) in pois"
+                    :key="poi.id"
+                    :class="['poi', { strike: $store.state.planningBoard.sequence.includes(poi.id) }]">
 
-                <div class="chart">
-                    <div class="row">
-                        <h3>⚠️ Base danger</h3>
-                        <span>{{ poi.risk }}</span>
+                    <h2 class="name">{{ poi.name }}</h2>
+
+                    <div class="chart">
+                        <div class="row">
+                            <h3>🔥 Base risk</h3>
+                            <span>{{ poi.risk }}</span>
+                        </div>
+
+                        <div
+                            :class="['row', { strike: $store.state.planningBoard.sequence.includes(f.id) }]"
+                            v-for="(f, i) in poi.foundation">
+                            <h3>⚠️ {{ getName(f.id) }}</h3>
+                            <span>+{{ f.risk }}</span>
+                        </div>
+
+                        <div class="row">
+                            <h3>⚙️ Scrap</h3>
+                            <span>{{ poi.scrap }}</span>
+                        </div>
                     </div>
-                    <div
-                        :class="['row', { strike: $store.state.planningBoard.sequence.includes(f.id) }]"
-                        v-for="(f, i) in poi.foundation">
-                        <h3>🛑 {{ getName(f.id) }}</h3>
-                        <span>+{{ f.risk }}</span>
-                    </div>
-                </div>
 
-                <button
-                    :aria-label="`Mark ${ poi.name } for demolition.`"
-                    @click="$store.commit('ADD_SECTION_TO_SEQUENCE', poi.id)"
-                    v-if="!$store.state.planningBoard.sequence.includes(poi.id)">
-                    Add to Sequence
-                </button>
+                    <button
+                        :aria-label="`Mark ${ poi.name } for demolition.`"
+                        @click="$store.commit('ADD_SECTION_TO_SEQUENCE', poi.id)"
+                        v-if="!$store.state.planningBoard.sequence.includes(poi.id)">
+                        Add to Sequence
+                    </button>
 
-            </li>
-        </ul>
+                </li>
+            </ul>
 
-        <!-- Sequence section -->
-        <h2>Sequence</h2>
-        <ul class="goal-wrap">
+            <!-- Sequence section -->
+            <h2>Sequence</h2>
+            <ul class="goal-wrap">
 
-            <li v-if="!$store.state.planningBoard.sequence.length">
-                <p>Build out your demo plan here!</p>
-                <p>Decide which section has the least risk and mark it for demolition. </p>
-                <p>Continue through the blueprint until the entire ship is accounted for.</p>
-            </li>
+                <li v-if="!$store.state.planningBoard.sequence.length">
+                    <p>Build out your demo plan here!</p>
+                    <p>Each section of a ship has a risk of catching 🔥 fire during demolition.</p>
+                    <p>A 🔥 fire can lead to an 💥 explosion, which destroys all of a section's ⚙️ scrap and starts 🔥 fires in neighboring sections.</p>
+                    <p>Some sections are more likely to catch 🔥 fire if other sections haven't been destroyed yet. Destroy those ⚠️ links first to lessen risk.</p>
+                </li>
 
-            <li
-                v-for="(step, i) in $store.state.planningBoard.sequence"
-                :key="i">
+                <li
+                    v-for="(step, i) in $store.state.planningBoard.sequence"
+                    :key="i">
 
-                <p>{{ getName(step) }}</p>
+                    <p>{{ getName(step) }}</p>
 
-                <p>Calculated danger: {{ calcDanger(i, step) }}</p>
+                    <p>🔥 Risk: {{ calcDanger(i, step) }}, ⚙️ Scrap: {{ getSection(step).scrap }}</p>
 
-                <button @click="$store.commit('SLICE_SEQUENCE_AT', i)">Remove</button>
+                    <button @click="$store.commit('SLICE_SEQUENCE_AT', i)">Remove</button>
 
-            </li>
+                </li>
 
-        </ul>
+            </ul>
+        </div>
+
+        <button class="collapse" @click="$store.commit('TOGGLE_PLANS')">Close</button>
 
     </section>
 
@@ -133,10 +145,18 @@ export default {
     color: $print-black;
     padding: $border;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 
-    & > *:first-child {
-        margin-top: 0;
+    .top-wrap {
+        flex: 1;
+
+        & > *:first-child {
+            margin-top: 0;
+        }
     }
+
     .design-wrap {
         display: flex;
         padding: 0;
@@ -175,6 +195,29 @@ export default {
                     font-weight: 700;
                 }
             }
+        }
+    }
+    .collapse {
+        appearance: none;
+        background-color: transparent;
+        border: none;
+        display: block;
+        text-align: right;
+        width: 100%;
+        cursor: pointer;
+        font-family: $font-family;
+        font-size: 28px;
+        color: $off-white;
+        margin: 40px 0 0;
+        padding: 10px;
+        background-color: black;
+        border: 2px solid $print-black;
+        min-height: 60px;
+
+        &:hover,
+        &:focus {
+            background-color: $off-white;
+            color: $print-black;
         }
     }
 

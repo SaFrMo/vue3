@@ -17,16 +17,24 @@
                 "name": "Engine",
                 "id": 0,
                 "position": [-2, 1, 0],
-                "risk": 40,
-                "foundation": [{ "id": 2, "risk": 30 }, { "id": 1, "risk": 40 }]
+                "risk": 4,
+                "scrap": 50,
+                "foundation": [{ "id": 2, "risk": 3 }, { "id": 1, "risk": 4 }]
             },
-            { "name": "Bridge", "id": 1, "position": [0, 0, 0], "risk": 10 },
+            {
+                "name": "Bridge",
+                "id": 1,
+                "position": [0, 0, 0],
+                "risk": 1,
+                "scrap": 35
+            },
             {
                 "name": "Life support",
                 "id": 2,
                 "position": [3, 0, 0],
-                "risk": 20,
-                "foundation": [{ "id": 1, "risk": 30 }]
+                "risk": 2,
+                "scrap": 10,
+                "foundation": [{ "id": 1, "risk": 3 }]
             }
         ]
     }

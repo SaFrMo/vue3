@@ -12,12 +12,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import 'src/vue/styles/vars';
+
 html {
     overflow: hidden;
 }
 #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: $font-family;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
