@@ -53,6 +53,8 @@
 
                 <p>{{ getName(step) }}</p>
 
+                <p>Calculated danger: {{ calcDanger(i, step) }}</p>
+
                 <button @click="$store.commit('SLICE_SEQUENCE_AT', i)">Remove</button>
 
             </li>
@@ -85,11 +87,33 @@ export default {
     },
     methods: {
         getName(id) {
-            const result = this.pois.find(x => x.id == id)
-            if (result) {
-                return result.name
-            }
-            return ''
+            const result = this.getSection(id)
+            return result ? result.name : ''
+        },
+        getSection(id) {
+            return this.pois.find(x => x.id == id)
+        },
+        calcDanger(sequenceIndex, sectionId) {
+            const section = this.getSection(sectionId)
+
+            if (!section) return ''
+
+            let danger = section.risk
+
+            if (!section.foundation) return danger
+
+            section.foundation.map(x => {
+                // if foundation id doesn't exist before this sequenceIndex, add danger
+                const slice = this.$store.state.planningBoard.sequence.slice(
+                    0,
+                    sequenceIndex
+                )
+                if (!slice.includes(x.id)) {
+                    danger += x.risk
+                }
+            })
+
+            return danger
         }
     }
 }
