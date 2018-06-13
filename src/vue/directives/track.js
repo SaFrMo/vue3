@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 let top = 0
 let left = 0
 let tracked = null
@@ -11,9 +13,9 @@ function updatePosition(el, binding, vnode) {
         tracked = root.game.load(value)
     }
     if (tracked) {
-        let pos = root.game.utils.getScreenPositionFromWorldPosition(
-            tracked.getWorldPosition()
-        )
+        const worldPos = new THREE.Vector3()
+        tracked.getWorldPosition(worldPos)
+        let pos = root.game.utils.getScreenPositionFromWorldPosition(worldPos)
         left = pos.x
         top = pos.y
 
