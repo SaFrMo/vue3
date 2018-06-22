@@ -24,5 +24,12 @@ export default {
 
     moveToward(obj, targetPos, delta) {
         obj.translateOnAxis(obj.worldToLocal(targetPos), delta)
+    },
+
+    rad2Deg(rads) {
+        return rads * 57.29578
+    },
+    deg2Rad(deg) {
+        return deg / 57.29578
     }
 }
