@@ -7,7 +7,15 @@ export default async function() {
     //
     // For example, to add a sun-like directional light to the scene:
     //
-    // const sun = new THREE.DirectionalLight(0xffffff, 1)
-    // sun.position.set(1, 0.5, 1)
-    // this.game.scene.add(sun)
+    const sun = new THREE.DirectionalLight(0xffffff, 1)
+    sun.position.set(1, 0.5, 1)
+    this.game.scene.add(sun)
+    this.game.save('sun', sun)
+
+    const grass = await this.game.loadObj('static/assets/grass.obj')
+    this.game.scene.add(grass)
+    this.game.save('grass', grass)
+
+    this.game.camera.position.set(0.5, 0.5, 0.5)
+    this.game.camera.lookAt(grass.position)
 }
