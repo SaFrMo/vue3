@@ -9,6 +9,10 @@ import THREE from 'three'
 
 Vue.config.productionTip = false
 
+// Import game functions
+import start from './game/start'
+import update from './game/update'
+
 // add UI
 new Vue({
     el: '#app',
@@ -24,6 +28,10 @@ new Vue({
     mounted() {
         this.game = new Vue3Game()
 
-        // Custom code here!
+        // Start the game!
+        start.call(this)
+
+        // Set the update function!
+        this.game.update = () => update.call(this)
     }
 })
