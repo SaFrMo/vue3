@@ -12,7 +12,9 @@ export default async function() {
     this.game.scene.add(sun)
     this.game.save('sun', sun)
 
-    const grass = await this.game.loadObj('static/assets/grass.obj')
+    const grass = await this.game.loadObj('static/assets/grass.obj', {
+        material: 'static/assets/grass.mtl'
+    })
     this.game.scene.add(grass)
     this.game.save('grass', grass)
 
