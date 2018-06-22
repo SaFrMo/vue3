@@ -1,6 +1,7 @@
 import store from '../store'
 import * as THREE from 'three'
-import objLoader from './objLoader'
+import objLoader from './loaders/objLoader'
+import mtlLoader from './loaders/mtlLoader'
 import utils from './utils'
 
 export default class {
@@ -40,6 +41,10 @@ export default class {
         // async OBJ loader
         // accepts two arguments, URL and onProgress event
         this.loadObj = objLoader
+
+        // async MTL loader
+        // accepts URL as argument
+        this.loadMtl = mtlLoader
 
         // save utils
         this.utils = utils
