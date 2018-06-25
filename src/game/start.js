@@ -12,12 +12,24 @@ export default async function() {
     this.game.scene.add(sun)
     this.game.save('sun', sun)
 
-    const grass = await this.game.loadObj('static/assets/grass.obj', {
-        material: 'static/assets/grass.mtl'
+    // add computer
+    const computer = await this.game.loadObj('static/assets/computer.obj', {
+        material: 'static/assets/computer.mtl'
     })
-    this.game.scene.add(grass)
-    this.game.save('grass', grass)
+    computer.position.set(0, 0, 0)
+    this.game.scene.add(computer)
+    this.game.save('computer', computer)
+    computer.rotation.set(0, -90, 0)
 
-    this.game.camera.position.set(0.5, 0.5, 0.5)
-    this.game.camera.lookAt(grass.position)
+    // add player
+    const geo = new THREE.SphereBufferGeometry(0.01, 32, 32)
+    const mat = new THREE.MeshBasicMaterial({ color: 0xffff00 })
+    const player = new THREE.Mesh(geo, mat)
+    player.position.set(0.5, 0, 1)
+    player.add(this.game.camera)
+    this.game.scene.add(player)
+    this.game.save('player', player)
+
+    this.game.camera.position.set(0, 0.1, 0.2)
+    this.game.camera.lookAt(computer.position)
 }

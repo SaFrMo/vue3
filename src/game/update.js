@@ -1,13 +1,18 @@
 import * as THREE from 'three'
 
-let world = null
+let computer = null
 
 export default function() {
-    if (!world) {
-        world = this.game.load('world')
+    if (!computer) {
+        computer = this.game.load('computer')
     }
 
-    if (world) {
-        world.phiStart = 3
+    if (computer) {
+        // computer.rotation.set(
+        //     computer.rotation.x,
+        //     computer.rotation.y +
+        //         this.game.utils.deg2Rad(-5) * this.game.deltaTime,
+        //     computer.rotation.z
+        // )
     }
 }
