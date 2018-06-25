@@ -8,7 +8,11 @@ export default new Vuex.Store({
     state: {
         // inputs
         inputHorizontal: 0,
-        inputVertical: 0
+        inputVertical: 0,
+
+        // gameplay vars
+        turnRate: 2,
+        moveRate: 1
     },
     mutations: {
         SET_INPUT_HORIZONTAL: (state, payload) => {
