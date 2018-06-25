@@ -21,15 +21,6 @@ export default async function() {
     this.game.save('computer', computer)
     computer.rotation.set(0, -90, 0)
 
-    // add player
-    const geo = new THREE.SphereBufferGeometry(0.01, 32, 32)
-    const mat = new THREE.MeshBasicMaterial({ color: 0xffff00 })
-    const player = new THREE.Mesh(geo, mat)
-    player.position.set(0.5, 0, 1)
-    player.add(this.game.camera)
-    this.game.scene.add(player)
-    this.game.save('player', player)
-
-    this.game.camera.position.set(0, 0.1, 0.2)
+    this.game.camera.position.set(0.5, 0.5, 0.5)
     this.game.camera.lookAt(computer.position)
 }
