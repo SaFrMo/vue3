@@ -26,7 +26,7 @@ new Vue({
         }
     },
     mounted() {
-        this.game = new Vue3Game()
+        this.game = new Vue3Game(this)
 
         // Start the game!
         start.call(this)

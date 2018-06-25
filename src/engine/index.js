@@ -3,11 +3,15 @@ import * as THREE from 'three'
 import objLoader from './loaders/objLoader'
 import mtlLoader from './loaders/mtlLoader'
 import utils from './utils'
+import setupControls from './misc/controls'
 
 export default class {
-    constructor() {
+    constructor(vueInstance) {
         // save global object
         window.game = this
+
+        // save vue instance
+        this.vue = vueInstance
 
         // create main scene
         this.scene = new THREE.Scene()
@@ -48,6 +52,9 @@ export default class {
 
         // save utils
         this.utils = utils
+
+        // set up WASD/arrow controls
+        setupControls.call(this)
 
         // kick update loop
         this.masterUpdate()

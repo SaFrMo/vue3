@@ -22,14 +22,22 @@ export default {
         return pos
     },
 
+    // move `obj` toward `targetPos` by `delta` distance
     moveToward(obj, targetPos, delta) {
         obj.translateOnAxis(obj.worldToLocal(targetPos), delta)
     },
 
+    // convert radians to degrees
     rad2Deg(rads) {
         return rads * 57.29578
     },
+    // convert degrees to radians
     deg2Rad(deg) {
         return deg / 57.29578
+    },
+
+    // clamp a number between two values (inclusive)
+    clamp(val, min, max) {
+        return Math.max(Math.min(val, max), min)
     }
 }
