@@ -28,6 +28,12 @@ export default async function() {
     const screen = new THREE.Mesh(screenGeo, screenMat)
     screen.rotation.set(0, this.game.utils.deg2Rad(-90), 0)
     this.game.scene.add(screen)
+    this.game.save('screen', screen)
+
+    // add css camera
+    const cssCamera = new THREE.PerspectiveCamera(50, 1, 1, 10000)
+    cssCamera.position.z = 1000
+    this.game.save('cssCamera', cssCamera)
 
     // add css 3d renderer
     const cssRenderer = new CSS3DRenderer()
@@ -36,15 +42,14 @@ export default async function() {
     cssRenderer.domElement.style.top = 0
     cssRenderer.domElement.style.left = 0
     this.game.save('cssRenderer', cssRenderer)
-    document.body.append(cssRenderer.domElement)
+    document.body.appendChild(cssRenderer.domElement)
 
     // add screen DOM element
     const el = document.createElement('img')
     el.src = 'static/screen.png'
     const cssObj = new CSS3DObject(el)
-    cssObj.position.set(screen.position)
-    // cssObj.rotation.set(screen.rotation)
     this.game.scene.add(cssObj)
+    this.game.save('img', cssObj)
 
     // position and angle camera
     this.game.camera.position.set(0.5, 0.5, 0.5)
