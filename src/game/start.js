@@ -13,6 +13,15 @@ export default async function() {
     this.game.scene.add(sun)
     this.game.save('sun', sun)
 
+    // GL
+    // ==========
+
+    // add centerpoint
+    const centerpoint = new THREE.Object3D()
+    this.game.scene.add(centerpoint)
+    centerpoint.add(this.game.camera)
+    this.game.save('centerpoint', centerpoint)
+
     // add computer
     const computer = await this.game.loadObj('static/assets/computer.obj', {
         material: 'static/assets/computer.mtl'
@@ -23,17 +32,21 @@ export default async function() {
     computer.rotation.set(0, this.game.utils.deg2Rad(-90), 0)
 
     // add screen wireframe
-    const screenMat = new THREE.MeshBasicMaterial({ wireframe: true })
-    const screenGeo = new THREE.PlaneGeometry()
-    const screen = new THREE.Mesh(screenGeo, screenMat)
-    screen.rotation.set(0, this.game.utils.deg2Rad(-90), 0)
-    this.game.scene.add(screen)
-    this.game.save('screen', screen)
+    // const screenMat = new THREE.MeshBasicMaterial({ wireframe: true })
+    // const screenGeo = new THREE.PlaneGeometry()
+    // const screen = new THREE.Mesh(screenGeo, screenMat)
+    // screen.rotation.set(0, this.game.utils.deg2Rad(-90), 0)
+    // this.game.scene.add(screen)
+    // this.game.save('screen', screen)
+
+    // CSS
+    // ==========
 
     // add css camera
     const cssCamera = new THREE.PerspectiveCamera(50, 1, 1, 10000)
-    cssCamera.position.z = 1000
+    cssCamera.position.z = 6000
     this.game.save('cssCamera', cssCamera)
+    this.game.camera.add(cssCamera)
 
     // add css 3d renderer
     const cssRenderer = new CSS3DRenderer()
@@ -45,11 +58,17 @@ export default async function() {
     document.body.appendChild(cssRenderer.domElement)
 
     // add screen DOM element
-    const el = document.createElement('img')
-    el.src = 'static/screen.png'
+    const el = document.createElement('iframe')
+    el.src = 'https://www.youtube.com/embed/0o_ECjjEcxM'
     const cssObj = new CSS3DObject(el)
+    cssObj.rotation.set(0, this.game.utils.deg2Rad(90), 0)
+    cssObj.position.set(
+        computer.position.x - 220,
+        computer.position.y + 1200,
+        computer.position.z
+    )
     this.game.scene.add(cssObj)
-    this.game.save('img', cssObj)
+    this.game.save('in-game-dom', cssObj)
 
     // position and angle camera
     this.game.camera.position.set(0.5, 0.5, 0.5)

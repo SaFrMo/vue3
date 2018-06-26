@@ -2,26 +2,28 @@ import * as THREE from 'three'
 
 let cssRenderer = null
 let cssCamera = null
-let image = null
-let screen = null
+let inGameDom = null
+let centerpoint = null
 
 export default function() {
-    image = this.game.load('img')
+    inGameDom = this.game.load('in-game-dom')
     cssCamera = this.game.load('cssCamera')
     cssRenderer = this.game.load('cssRenderer')
-    screen = this.game.load('screen')
+    centerpoint = this.game.load('centerpoint')
 
-    if (image && screen) {
-        image.rotation.set(
-            0,
-            image.rotation.y +
-                this.game.utils.deg2Rad(15) * this.game.deltaTime,
-            0
+    if (centerpoint) {
+        centerpoint.rotation.y += this.game.utils.deg2Rad(
+            this.$store.state.turnRate *
+                this.$store.state.inputHorizontal *
+                this.game.deltaTime
         )
     }
 
+    if (inGameDom) {
+    }
+
     if (cssRenderer && cssCamera) {
-        // cssRenderer.setSize(window.innerWidth, window.innerHeight)
+        cssRenderer.setSize(window.innerWidth, window.innerHeight)
         cssRenderer.render(this.game.scene, cssCamera)
     }
 }

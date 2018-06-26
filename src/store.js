@@ -11,7 +11,7 @@ export default new Vuex.Store({
         inputVertical: 0,
 
         // gameplay vars
-        turnRate: 2,
+        turnRate: 90,
         moveRate: 1
     },
     mutations: {
